@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
+<!-- saved from url=(0043)https://mvbelousov.github.io/house-landing/ -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Дом 243 м² - Арзамас | Клееный брус 280 мм</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -154,12 +154,12 @@
     }
 
     .hero-video-wrap video {
-      width: 112%;
-      height: 112%;
+      width: 116%;
+      height: 116%;
       object-fit: cover;
       position: absolute;
-      top: -6%;
-      left: -6%;
+      top: -8%;
+      left: -8%;
       will-change: transform;
       transform: translateZ(0);
     }
@@ -995,8 +995,71 @@
       letter-spacing: 1px;
     }
 
+    /* ==================== HAMBURGER BUTTON ==================== */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 210;
+      margin-left: auto;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: rgba(255,255,255,0.7);
+      margin: 5px 0;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(4px, 5px);
+    }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(4px, -5px);
+    }
+
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 900px) {
+      .hamburger { display: block; }
+
+      .nav {
+        justify-content: space-between;
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(20, 20, 20, 0.98);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+        z-index: 205;
+      }
+
+      .nav-links.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-links a {
+        font-size: 14px;
+        letter-spacing: 3px;
+        color: rgba(255,255,255,0.6);
+      }
+
       .room-block, .room-block.reverse {
         grid-template-columns: 1fr;
         min-height: auto;
@@ -1024,14 +1087,18 @@
     }
 
     @media (max-width: 600px) {
-      .nav-links { gap: 20px; }
-      .nav-links a { font-size: 10px; letter-spacing: 1.5px; }
       .hero-stats { gap: 16px; }
       .hero-stat { border-right: none; padding-right: 0; }
       .gallery-grid { grid-template-columns: 1fr; }
       .gallery-tabs { flex-wrap: wrap; }
+      .gallery-tab { padding: 8px 14px; }
       .lb-img { max-width: 95%; }
-      .lb-info { left: 20px; bottom: 20px; }
+      .lb-info { left: 16px; bottom: 16px; }
+      .lb-nav { width: 40px; height: 40px; }
+      .lb-nav.prev { left: 8px; }
+      .lb-nav.next { right: 8px; }
+      .cta-btn { padding: 16px 36px; }
+      .parallax-content { padding: clamp(32px, 6vw, 60px); }
     }
 
     /* iOS Safari doesn't support background-attachment: fixed well */
@@ -1039,60 +1106,6 @@
       .parallax-section {
         background-attachment: scroll;
       }
-    }
-
-    /* ==================== PRELOADER ==================== */
-    .preloader {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: var(--ink);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      transition: opacity 0.6s ease-out;
-    }
-
-    .preloader.fade-out {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .preloader-logo {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 14px;
-      font-weight: 400;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
-    }
-
-    .preloader-bar-track {
-      width: 160px;
-      height: 1px;
-      background: rgba(255,255,255,0.08);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .preloader-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 0%;
-      background: var(--gold);
-      transition: width 0.3s ease-out;
-    }
-
-    .preloader-percent {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 13px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.2);
-      letter-spacing: 2px;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1108,24 +1121,14 @@
         opacity: 1;
         animation: none;
       }
-      .preloader { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- PRELOADER -->
-  <div class="preloader" id="preloader">
-    <div class="preloader-logo">Арзамас</div>
-    <div class="preloader-bar-track">
-      <div class="preloader-bar" id="preloaderBar"></div>
-    </div>
-    <div class="preloader-percent" id="preloaderPercent">0%</div>
-  </div>
-
   <!-- NAV -->
   <nav class="nav" id="nav">
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="#about">О доме</a>
       <a href="#kitchen">Кухня</a>
       <a href="#living">Гостиная</a>
@@ -1134,12 +1137,17 @@
       <a href="#gallery">Галерея</a>
       <a href="#contact">Контакт</a>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="Меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
   <!-- HERO - DRONE VIDEO -->
   <section class="hero">
     <div class="hero-video-wrap">
-      <video autoplay muted loop playsinline>
+      <video autoplay="" muted="" loop="" playsinline="">
         <source src="media/exterior/обзор.mov" type="video/mp4">
       </video>
     </div>
@@ -1154,15 +1162,15 @@
       </p>
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="hero-stat-value"><span class="counter-value" data-target="243">0</span> м²</div>
+          <div class="hero-stat-value"><span class="counter-value" data-target="243" data-counted="1">243</span> м²</div>
           <div class="hero-stat-label">Жилая площадь</div>
         </div>
         <div class="hero-stat">
-          <div class="hero-stat-value"><span class="counter-value" data-target="10">0</span> соток</div>
+          <div class="hero-stat-value"><span class="counter-value" data-target="10" data-counted="1">10</span> соток</div>
           <div class="hero-stat-label">Участок</div>
         </div>
         <div class="hero-stat">
-          <div class="hero-stat-value"><span class="counter-value" data-target="280">0</span> мм</div>
+          <div class="hero-stat-value"><span class="counter-value" data-target="280" data-counted="1">280</span> мм</div>
           <div class="hero-stat-label">Клееный брус</div>
         </div>
         <div class="hero-stat">
@@ -1332,14 +1340,14 @@
     <div style="max-width: 1100px; margin: 0 auto;">
       <div class="reveal" style="margin-bottom: 64px;">
         <div class="section-label">Инженерия</div>
-        <h2 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(28px, 3.5vw, 46px); font-weight: 400; color: var(--ivory); line-height: 1.2;">
+        <h2 style="font-family: &#39;Cormorant Garamond&#39;, Georgia, serif; font-size: clamp(28px, 3.5vw, 46px); font-weight: 400; color: var(--ivory); line-height: 1.2;">
           Стены, которые помнят рук мастеров
         </h2>
       </div>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px;">
         <!-- Left: Structure -->
         <div class="reveal stagger-1">
-          <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; font-weight: 400; color: var(--gold); margin-bottom: 20px;">
+          <h3 style="font-family: &#39;Cormorant Garamond&#39;, Georgia, serif; font-size: 22px; font-weight: 400; color: var(--gold); margin-bottom: 20px;">
             Монолит вместо каркасника
           </h3>
           <p style="font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.5); line-height: 2; margin-bottom: 32px;">
@@ -1347,7 +1355,7 @@
             Это не каркасник - это монолитная конструкция из массива дерева.
             Балки перекрытия 100×450 мм - с запасом на любые перепланировки.
           </p>
-          <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; font-weight: 400; color: var(--gold); margin-bottom: 20px;">
+          <h3 style="font-family: &#39;Cormorant Garamond&#39;, Georgia, serif; font-size: 22px; font-weight: 400; color: var(--gold); margin-bottom: 20px;">
             Дышащий утеплитель
           </h3>
           <p style="font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.5); line-height: 2;">
@@ -1359,7 +1367,7 @@
         </div>
         <!-- Right: Windows -->
         <div class="reveal stagger-2">
-          <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; font-weight: 400; color: var(--gold); margin-bottom: 20px;">
+          <h3 style="font-family: &#39;Cormorant Garamond&#39;, Georgia, serif; font-size: 22px; font-weight: 400; color: var(--gold); margin-bottom: 20px;">
             Стеклопакеты как в арктических экспедициях
           </h3>
           <ul class="detail-list" style="margin-top: 0;">
@@ -1367,7 +1375,7 @@
             <li style="color: rgba(255,255,255,0.45);">Второй этаж: <strong style="color: var(--ivory); font-weight: 400;">8 мм закаленное стекло + 32 мм аргон + 6 мм закаленное стекло</strong></li>
             <li style="color: rgba(255,255,255,0.45);">Окна - <strong style="color: var(--ivory); font-weight: 400;">теплый алюминий</strong></li>
           </ul>
-          <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; font-weight: 400; color: var(--gold); margin-bottom: 20px; margin-top: 32px;">
+          <h3 style="font-family: &#39;Cormorant Garamond&#39;, Georgia, serif; font-size: 22px; font-weight: 400; color: var(--gold); margin-bottom: 20px; margin-top: 32px;">
             Тепловая завеса
           </h3>
           <p style="font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.5); line-height: 2;">
@@ -1423,7 +1431,7 @@
   </div>
 
   <!-- PARALLAX - POND -->
-  <div class="parallax-section" style="background-image: url('media/pond-landscape/пруд.jpeg');">
+  <div class="parallax-section" style="background-image: url(&#39;media/pond-landscape/пруд.jpeg&#39;);">
     <div class="parallax-content reveal-left">
       <div class="section-label">Участок</div>
       <div class="gold-line"></div>
@@ -1478,7 +1486,7 @@
   </div>
 
   <!-- PARALLAX - WINTER FOREST -->
-  <div class="parallax-section" style="background-image: url('media/winter-forest/IMG_8773.jpeg');">
+  <div class="parallax-section" style="background-image: url(&#39;media/winter-forest/IMG_8773.jpeg&#39;);">
     <div class="parallax-content reveal-left">
       <div class="section-label">Природа</div>
       <div class="gold-line"></div>
@@ -1507,14 +1515,206 @@
         <button class="gallery-tab" data-tab="gazebo">Беседка</button>
       </div>
     </div>
-    <div class="gallery-grid" id="galleryGrid"></div>
+    <div class="gallery-grid" id="galleryGrid"><div class="g-item">
+          <img src="media/exterior/фасад-профиль.png" alt="Фасад дома" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Фасад дома</div>
+            <div class="g-label-sub">Клееный брус 280 мм</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/exterior/задняя-часть-панорама.jpeg" alt="Задняя часть" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Задняя часть</div>
+            <div class="g-label-sub">Панорамный вид</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/exterior/задняя-часть-широкий-план.jpeg" alt="Задний двор" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Задний двор</div>
+            <div class="g-label-sub">Вид от широкой части</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/exterior/задняя-часть-из-беседки.jpeg" alt="Из беседки" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Из беседки</div>
+            <div class="g-label-sub">Вид на дом</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/exterior/вид-от-пруда.jpeg" alt="От пруда" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">От пруда</div>
+            <div class="g-label-sub">Задняя часть дома</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/exterior/гараж.png" alt="Гараж" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Гараж</div>
+            <div class="g-label-sub">Капитальное строение</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/exterior/озеленение-задний-двор.jpeg" alt="Озеленение" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Озеленение</div>
+            <div class="g-label-sub">Растения у дома</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/interior/1-этаж/кухня-вход.jpg" alt="Кухня — вход" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Кухня — вход</div>
+            <div class="g-label-sub">Вид при входе</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/interior/1-этаж/кухня-профиль.jpg" alt="Кухня" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Кухня</div>
+            <div class="g-label-sub">Керамогранит ITALON</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/interior/1-этаж/гостиная.png" alt="Гостиная" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Гостиная</div>
+            <div class="g-label-sub">Зона камина</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/interior/1-этаж/столовая.jpg" alt="Столовая" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Столовая</div>
+            <div class="g-label-sub">Обеденная зона</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/interior/1-этаж/столовая-второй-свет.jpg" alt="Второй свет" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Второй свет</div>
+            <div class="g-label-sub">Вид со 2 этажа</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/interior/1-этаж/лестница-дуб.png" alt="Лестница" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Лестница</div>
+            <div class="g-label-sub">Массив дуба</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/interior/1-этаж/лестница-дуб-2.jpg" alt="Ступени" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Ступени</div>
+            <div class="g-label-sub">Фактура дуба</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/interior/2-этаж/мастер-спальня.jpg" alt="Мастер-спальня" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Мастер-спальня</div>
+            <div class="g-label-sub">Основная спальня</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/interior/2-этаж/гардероб-мастер.jpg" alt="Гардероб" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Гардероб</div>
+            <div class="g-label-sub">Мастер-спальня</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/interior/2-этаж/ванная.jpg" alt="Ванная" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Ванная</div>
+            <div class="g-label-sub">Теплый пол</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/interior/2-этаж/детская-1.png" alt="Детская №1" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Детская №1</div>
+            <div class="g-label-sub">Первая детская</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/interior/2-этаж/детская-2.png" alt="Детская №2" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Детская №2</div>
+            <div class="g-label-sub">Вторая детская</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/interior/2-этаж/кабинет.png" alt="Кабинет" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Кабинет</div>
+            <div class="g-label-sub">Рабочее пространство</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/interior/2-этаж/вид-с-лестницы.jpg" alt="С лестницы" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">С лестницы</div>
+            <div class="g-label-sub">Подъем на 2 этаж</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/pond-landscape/пруд.jpeg" alt="Пруд" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Пруд</div>
+            <div class="g-label-sub">Живая рыба</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/pond-landscape/пруд-ночью.jpeg" alt="Пруд ночью" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Пруд ночью</div>
+            <div class="g-label-sub">Подсветка</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/pond-landscape/ручей.jpeg" alt="Ручей" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Ручей</div>
+            <div class="g-label-sub">Журчание воды</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/pond-landscape/грибы-на-участке.jpg" alt="Грибы" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Грибы</div>
+            <div class="g-label-sub">Экосистема участка</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/terrace-gazebo/беседка-закат.jpeg" alt="Беседка" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Беседка</div>
+            <div class="g-label-sub">На закате</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/terrace-gazebo/беседка-ночью.jpeg" alt="Беседка ночью" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Беседка ночью</div>
+            <div class="g-label-sub">Подсветка</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/terrace-gazebo/мангал-в-беседке.jpeg" alt="Мангал" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Мангал</div>
+            <div class="g-label-sub">Зона барбекю</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/terrace-gazebo/беседка-из-гостиной.jpg" alt="Из гостиной" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Из гостиной</div>
+            <div class="g-label-sub">Через панорамное окно</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/terrace-gazebo/беседка-с-высоты.jpeg" alt="С высоты" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">С высоты</div>
+            <div class="g-label-sub">Вид со 2 этажа</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/terrace-gazebo/вид-из-беседки-ночью.jpeg" alt="Из беседки" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">Из беседки</div>
+            <div class="g-label-sub">Ночной вид на дом</div>
+          </div>
+        </div><div class="g-item">
+          <img src="media/terrace-gazebo/вид-с-террасы.jpeg" alt="С террасы" decoding="async">
+          <div class="g-label">
+            <div class="g-label-title">С террасы</div>
+            <div class="g-label-sub">Беседка и пруд</div>
+          </div>
+        </div></div>
   </section>
 
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
-    <button class="lb-close" id="lbClose">&times;</button>
-    <button class="lb-nav prev" id="lbPrev">&#8592;</button>
-    <button class="lb-nav next" id="lbNext">&#8594;</button>
+    <button class="lb-close" id="lbClose">×</button>
+    <button class="lb-nav prev" id="lbPrev">←</button>
+    <button class="lb-nav next" id="lbNext">→</button>
       <img class="lb-img" id="lbImg" src="" alt="" decoding="async">
     <div class="lb-info">
       <div class="lb-info-title" id="lbTitle"></div>
@@ -1532,13 +1732,13 @@
     </div>
     <div class="plans-grid">
       <div class="plan-card reveal stagger-1">
-        <img src="media/floorplans/план-1-этаж.png" alt="1 этаж" decoding="async" onclick="openLightbox(this.src, 'Планировка - 1 этаж')">
+        <img src="media/floorplans/план-1-этаж.png" alt="1 этаж" decoding="async" onclick="openLightbox(this.src, &#39;Планировка - 1 этаж&#39;)">
         <div class="plan-label">Первый этаж</div>
         <div class="plan-desc">Кухня-гостиная со зоной камина, столовая вторым светом, тамбур, санузел</div>
         <a class="plan-download" href="media/floorplans/мебель-1-этаж.pdf" target="_blank">Скачать PDF расстановки мебели</a>
       </div>
       <div class="plan-card reveal stagger-2">
-        <img src="media/floorplans/план-2-этаж.png" alt="2 этаж" decoding="async" onclick="openLightbox(this.src, 'Планировка - 2 этаж')">
+        <img src="media/floorplans/план-2-этаж.png" alt="2 этаж" decoding="async" onclick="openLightbox(this.src, &#39;Планировка - 2 этаж&#39;)">
         <div class="plan-label">Второй этаж</div>
         <div class="plan-desc">Мастер-спальня с гардеробной, две детские, ванная с теплым полом</div>
         <a class="plan-download" href="media/floorplans/мебель-2-этаж.pdf" target="_blank">Скачать PDF расстановки мебели</a>
@@ -1585,42 +1785,21 @@
       }
     }, { passive: true });
 
-    // === PRELOADER — just wait for video, then fade out ===
-    (function() {
-      const preloader = document.getElementById('preloader');
-      const bar = document.getElementById('preloaderBar');
-      const percent = document.getElementById('preloaderPercent');
-      const video = document.querySelector('.hero-video-wrap video');
-      let done = false;
+    // === HAMBURGER MENU ===
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
 
-      function finish() {
-        if (done) return;
-        done = true;
-        bar.style.width = '100%';
-        percent.textContent = '100%';
-        setTimeout(() => {
-          preloader.classList.add('fade-out');
-          setTimeout(() => preloader.remove(), 600);
-        }, 200);
-      }
-
-      let progress = 0;
-      const tick = setInterval(() => {
-        progress = Math.min(progress + 2, 90);
-        bar.style.width = progress + '%';
-        percent.textContent = progress + '%';
-      }, 30);
-
-      if (video) {
-        video.addEventListener('canplay', () => { clearInterval(tick); finish(); }, { once: true });
-        video.addEventListener('error', () => { clearInterval(tick); finish(); }, { once: true });
-      } else {
-        clearInterval(tick);
-        finish();
-      }
-
-      setTimeout(() => { clearInterval(tick); finish(); }, 3000);
-    })();
+    // Preloader removed — HTML element not present
 
     // === SCROLL REVEAL — one-shot ===
     const revealObserver = new IntersectionObserver((entries) => {
@@ -1685,11 +1864,11 @@
       { src: 'media/pond-landscape/пруд.jpeg', t: 'Пруд', s: 'Живая рыба', cat: 'pond' },
       { src: 'media/pond-landscape/пруд-ночью.jpeg', t: 'Пруд ночью', s: 'Подсветка', cat: 'pond' },
       { src: 'media/pond-landscape/ручей.jpeg', t: 'Ручей', s: 'Журчание воды', cat: 'pond' },
-      { src: 'media/pond-landscape/грибы-на-участке.JPG', t: 'Грибы', s: 'Экосистема участка', cat: 'pond' },
+      { src: 'media/pond-landscape/грибы-на-участке.jpg', t: 'Грибы', s: 'Экосистема участка', cat: 'pond' },
       { src: 'media/terrace-gazebo/беседка-закат.jpeg', t: 'Беседка', s: 'На закате', cat: 'gazebo' },
       { src: 'media/terrace-gazebo/беседка-ночью.jpeg', t: 'Беседка ночью', s: 'Подсветка', cat: 'gazebo' },
       { src: 'media/terrace-gazebo/мангал-в-беседке.jpeg', t: 'Мангал', s: 'Зона барбекю', cat: 'gazebo' },
-      { src: 'media/terrace-gazebo/беседка-из-гостиной.JPG', t: 'Из гостиной', s: 'Через панорамное окно', cat: 'gazebo' },
+      { src: 'media/terrace-gazebo/беседка-из-гостиной.jpg', t: 'Из гостиной', s: 'Через панорамное окно', cat: 'gazebo' },
       { src: 'media/terrace-gazebo/беседка-с-высоты.jpeg', t: 'С высоты', s: 'Вид со 2 этажа', cat: 'gazebo' },
       { src: 'media/terrace-gazebo/вид-из-беседки-ночью.jpeg', t: 'Из беседки', s: 'Ночной вид на дом', cat: 'gazebo' },
       { src: 'media/terrace-gazebo/вид-с-террасы.jpeg', t: 'С террасы', s: 'Беседка и пруд', cat: 'gazebo' },
@@ -1792,5 +1971,6 @@
     });
   </script>
 
-</body>
-</html>
+
+
+</body></html>
